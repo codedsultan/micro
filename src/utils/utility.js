@@ -7,9 +7,7 @@ import fs from 'fs';
 import handlebars from 'handlebars';
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
-
-
-
+import path from 'path';
 
 const utility = {};
 
@@ -151,8 +149,8 @@ utility.sendMailWithMailtrap = async function (to, subject, data) {
         pass: process.env.MAILTRAP_PASSWORD,
       },
     });
-
-    fs.readFile('./email-templates/emailTemplate.hbs', 'utf8', (err, templateSource) => {
+    const templatePath = path.resolve('src/utils/email-templates/emailTemplate.hbs');
+    fs.readFile(templatePath, 'utf8', (err, templateSource) => {
       if (err) {
         console.log('Error reading template file:', err);
         return;
@@ -166,7 +164,7 @@ utility.sendMailWithMailtrap = async function (to, subject, data) {
       //   name: 'John Doe',  // Dynamic value to replace in the template
       // };
 
-      content = data || {};
+      const content = data || {};
 
       // Render the email content
       const htmlContent = template(data);

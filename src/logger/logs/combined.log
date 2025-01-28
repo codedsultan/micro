@@ -1,3 +1,15 @@
 {"level":"info","message":"App :: Registering Morgan middleware..."}
 {"level":"http","message":"::1 GET / 200 63 - 3.871 ms"}
 {"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/register 400 52 - 167.171 ms"}
+{"level":"http","message":"::1 POST /api/v1/register 201 43 - 6393.875 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/register 201 43 - 8824.300 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/register 201 43 - 7542.494 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/register 201 43 - 9787.613 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/register 201 43 - 10830.812 ms"}
+{"level":"http","message":"::1 POST /api/v1/register 201 43 - 12649.614 ms"}
