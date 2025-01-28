@@ -1,183 +1,109 @@
-const express = require('express');
-// const mongoose = require('mongoose');
-const axios = require('axios');
-const Url = require('./models/Url'); 
-// Replace with your actual Google Analytics Tracking ID
-const TRACKING_ID = 'UA-XXXXXXX-X';
-const app = express();
+import cloudinary from "cloudinary";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import { runApp, closeApp } from "./app.js";
+import initModules from "./initModules.js";
 
-// MongoDB URL model (assuming you have the URL schema)
-// const Url = mongoose.model('Url', {
-//   shortUrl: String,
-//   longUrl: String,
-//   expirationDate: Date,
-//   createdAt: Date,
-// });
+const app = runApp();
 
-// const urlSchema = new mongoose.Schema({
-//     longUrl: String,
-//     shortUrl: String,
-//     customShortUrl: String,
-//     createdAt: { type: Date, default: Date.now },
-//     expirationDate: Date,
-//     clicks: { type: Number, default: 0 }, // New field for click tracking
-//   });
-  
+// Starting Server
+(async () => {
+  // Config
+//   if (process.env.NODE_ENV !== "production") {
+//     dotenv.config({
+//       path: "src/config/config.env",
+//     });
+//   }
 
-// Function to track URL click event in Google Analytics
-const trackUrlClick = async (shortUrl, source, location) => {
-  try {
-    // Assuming source is the referrer (e.g., website, search engine, etc.)
-    // Assuming location is the user’s geographical data (e.g., country, city)
-    await axios.post('https://www.google-analytics.com/collect', null, {
-      params: {
-        v: '1', // Version
-        tid: TRACKING_ID, // Tracking ID
-        cid: '555', // Client ID (e.g., from cookies or generated)
-        t: 'event', // Event type (event)
-        ec: 'URL Shortener', // Event Category
-        ea: 'Click', // Event Action
-        el: shortUrl, // Event Label (shortened URL)
-        ev: '1', // Event Value
-        cd1: location, // Custom Dimension 1: Geographical data (e.g., country)
-        cd2: source, // Custom Dimension 2: Referrer/Source (e.g., search engine)
-      },
-    });
-  } catch (error) {
-    console.error('Error sending data to Google Analytics:', error);
-  }
-};
-
-// Function to track an ecommerce conversion (if you plan to monetize)
-const trackEcommerceConversion = async (transactionId, revenue) => {
-  try {
-    await axios.post('https://www.google-analytics.com/collect', null, {
-      params: {
-        v: '1',
-        tid: TRACKING_ID,
-        cid: '555',
-        t: 'transaction', // Transaction type
-        ti: transactionId, // Transaction ID
-        tr: revenue, // Revenue
-        ec: 'URL Shortener', // Event Category
-        ea: 'Subscription Purchase', // Event Action
-        el: 'Premium Membership', // Event Label
-        ev: revenue, // Event Value
-      },
-    });
-  } catch (error) {
-    console.error('Error tracking ecommerce conversion:', error);
-  }
-};
-
-// Redirect shortened URL and track click event
-app.get('/:shortUrl', async (req, res) => {
-  const { shortUrl } = req.params;
-
-  try {
-    const url = await Url.findOne({ shortUrl });
-    if (!url) return res.status(404).json('Short URL not found');
-
-    const currentDate = new Date();
-    if (url.expirationDate && currentDate > url.expirationDate) {
-      await Url.deleteOne({ shortUrl });
-      return res.status(410).json('This URL has expired');
-    }
-
-    // Track geographical data (e.g., using the IP or user-agent data)
-    const source = req.headers.referer || 'Unknown'; // Track the referrer/source (e.g., search engine, website)
-    const location = req.ip; // You can enhance this by using a geolocation service
-
-    // Track URL click and send data to Google Analytics
-    await trackUrlClick(shortUrl, source, location);
-
-    // Redirect to long URL
-    res.redirect(url.longUrl);
-  } catch (err) {
-    res.status(500).json('Server error');
-  }
-});
-
-// Example route to simulate an ecommerce conversion (e.g., user buys premium service)
-app.post('/purchase', async (req, res) => {
-  const { transactionId, revenue } = req.body;
-
-  try {
-    // Track ecommerce conversion event
-    await trackEcommerceConversion(transactionId, revenue);
-    res.status(200).json('Ecommerce transaction tracked');
-  } catch (err) {
-    res.status(500).json('Error tracking ecommerce transaction');
-  }
-});
-
-// URL shortening route
-app.post('/shorten', async (req, res) => {
-    const { longUrl } = req.body;
-  
-    const shortUrl = Math.random().toString(36).substring(2, 8); // Generate random 6 characters
-    const expirationDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000); // 24 hours expiration
-  
-    try {
-      const newUrl = new Url({ longUrl, shortUrl, expirationDate, createdAt: new Date() });
-      await newUrl.save();
-  
-      res.status(200).json({ shortUrl: `http://localhost:3000/${shortUrl}` });
-    } catch (err) {
-      res.status(500).json('Error saving URL');
-    }
+  // Cloudinary Setup
+  cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
   });
 
-// Route to shorten URL using 3rd Party API (Bitly Example)
-app.post('/shorten-bitly', async (req, res) => {
-  const { longUrl } = req.body;
+  const port = process.env.PORT || 4000;
 
-  try {
-    const response = await axios.post(
-      `https://api-ssl.bitly.com/v4/shorten`,
+  // Connecting to DB
+  const connectToDatabase = function () {
+    return mongoose.connect(
+      process.env.MONGO_URI,
       {
-        long_url: longUrl,
+        dbName: process.env.DB_NAME,
+        autoIndex: true,
+        socketTimeoutMS: 45000,
+        serverSelectionTimeoutMS: 60000,
       },
-      {
-        headers: {
-          Authorization: `Bearer ${BITLY_API_KEY}`,
-        },
+      function (err) {
+        if (err) {
+          console.log(`[database]: could not connect due to [${err.message}]`);
+          app.listen(port, (err) => {
+            if (err) {
+              console.log(
+                `[server] could not start http server on port: ${port}`
+              );
+              return;
+            }
+            console.log(`[server] running on port: ${port}`);
+          });
+          app.use("*", (req, res, next) => {
+            res.status(500).json({
+              success: false,
+              message: "server is offline due to database error",
+            });
+          });
+
+          //setTimeout(connectDatabase, 10000);
+        } else {
+          console.log(`[database]: connected successfully to MongoDB`);
+
+          // Init Modules
+          initModules(app);
+
+          // Error Handler
+          closeApp(app);
+
+          const server = app.listen(port, (err) => {
+            if (err) {
+              console.log(
+                `[server] could not start http server on port: ${port}`
+              );
+              return;
+            }
+            console.log(`[server] running on port: ${port}`);
+          });
+
+          // Handling Uncaught Exception
+          process.on("uncaughtException", (err) => {
+            console.log(`Error: ${err.message}`);
+            console.log(`[server] shutting down due to Uncaught Exception`);
+
+            server.close(() => {
+              process.exit(1);
+            });
+          });
+
+          // Unhandled Promise Rejection
+          process.on("unhandledRejection", (err) => {
+            console.log(`Error: ${err.message}`);
+            console.log(
+              `[server] shutting down due to Unhandled Promise Rejection`
+            );
+
+            server.close(() => {
+              process.exit(1);
+            });
+          });
+        }
       }
     );
+  };
 
-    const shortenedUrl = response.data.link;
+  connectToDatabase();
 
-    // Save the URL in MongoDB
-    const newUrl = new Url({ longUrl, shortUrl: shortenedUrl });
-    await newUrl.save();
 
-    res.json({ longUrl, shortUrl: shortenedUrl });
-  } catch (err) {
-    res.status(500).json({ error: 'Failed to shorten URL using Bitly' });
-  }
-});
+  //sockets
+// const socketio=require('socket.io')
 
-// Endpoint to fetch analytics data
-app.get('/analytics/:shortUrl', async (req, res) => {
-    const { shortUrl } = req.params;
-  
-    try {
-      const url = await Url.findOne({ shortUrl });
-      if (!url) return res.status(404).json('Short URL not found');
-  
-      res.json({ clicks: url.clicks });
-    } catch (err) {
-      res.status(500).json('Server error');
-    }
-});
 
-app.get('/urls', async (req, res) => {
-    try {
-      const urls = await Url.find(); // Assuming your URL model is called Url
-      res.status(200).json(urls);
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: 'Server error' });
-    }
-  });
-app.listen(3000, () => console.log('Server running on port 3000'));
+})();

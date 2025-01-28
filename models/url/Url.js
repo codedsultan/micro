@@ -1,5 +1,6 @@
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 
+import mongoose from 'mongoose';
 // Define the schema for the URL
 const urlSchema = new mongoose.Schema({
   longUrl: {
@@ -28,11 +29,18 @@ const urlSchema = new mongoose.Schema({
   clicks: {
     type: Number,
     default: 0, // Tracks the number of times the shortened URL is clicked
-  }
+  },
+
+  owner: {
+    type: mongoose.Schema.ObjectId,
+    ref: "User",
+  },
 });
+
 
 // Create the model using the schema
 const Url = mongoose.model('Url', urlSchema);
 
 // Export the model
-module.exports = Url;
+// module.exports = Url;
+export default Url;
