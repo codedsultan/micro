@@ -1,4 +1,9 @@
-A url shortner API using Node.js, Express, MongoDB
+A Lightweight URL Shortener API built with Node.js, Express, MongoDB
+with User authentication and authorization using JWT tokens
+
+It's a work in progress and will be updated as much as possible.
+<!-- Cloudinary for image uploads and Google Analytics for tracking URL clicks. -->
+.
 
 ## Installation
 
