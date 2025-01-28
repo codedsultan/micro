@@ -190,4 +190,34 @@ utility.sendMailWithMailtrap = async function (to, subject, data) {
     });
 };
 
+
+ utility.generateRandomString = function(length = 10){
+  const chars =
+    "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+  let result = "";
+
+  for (let i = length; i > 0; --i) {
+    result += chars[Math.floor(Math.random() * chars.length)];
+  }
+
+  return result;
+}
+
+/**
+ * Generate Slug from Text
+ */
+ utility.generateSlugFromText = function(text){
+  if (!text) throw new Error("Text is not defined");
+
+  const slug = text
+    .toLowerCase()
+    .replace(/[^\w ]+/g, "")
+    .replace(/ +/g, "-");
+
+  const random = this.generateRandomString(10);
+
+  return `${slug}-${random}`;
+}
+
 export default utility;
