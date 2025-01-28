@@ -1,4 +1,6 @@
 import winston from "winston";
+import fs from 'fs';
+import path from 'path';
 
 // Define your severity levels.
 const levels = {
@@ -39,6 +41,10 @@ if (process.env.NODE_ENV !== "development") {
   );
 }
 
+const logDirectory = path.join(__dirname, 'logs');
+if (!fs.existsSync(logDirectory)) {
+  fs.mkdirSync(logDirectory);
+}
 // Define transports of the Logger
 const transports = [
   new winston.transports.Console({
@@ -46,7 +52,7 @@ const transports = [
     format: _consoleFormat,
   }),
 
-//   new winston.transports.File({ filename: path.join(logDirectory, 'combined.log') }),
+  new winston.transports.File({ filename: path.join(logDirectory, 'combined.log') }),
 
 ];
 
