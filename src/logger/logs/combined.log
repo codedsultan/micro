@@ -1,2 +1,3 @@
 {"level":"info","message":"App :: Registering Morgan middleware..."}
 {"level":"http","message":"::1 GET / 200 63 - 3.871 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
