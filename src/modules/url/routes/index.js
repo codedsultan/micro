@@ -10,7 +10,7 @@ const isAuthenticatedUser = authMiddleware.isAuthenticatedUser;
 // Authenticated Routes -------------------------------------------------------
 
 urlRouter
-  .route("/shorten-url")
+  .route("/:shortUrl")
   .post(isAuthenticatedUser,urlController.shortenUrl);
 
 urlRouter
@@ -28,6 +28,14 @@ urlRouter
 urlRouter
   .route("/delete-url")
   .delete(isAuthenticatedUser,urlController.deleteUrl);
+
+urlRouter
+  .route("/shorten-bitly")
+  .post(isAuthenticatedUser,urlController.shortenBitLy);
+
+urlRouter
+  .route("/get-url-redirect")
+  .get(isAuthenticatedUser,urlController.getUrlRedirect);
 
 
 export default urlRouter;
