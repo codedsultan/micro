@@ -35,7 +35,7 @@ const uploadProfilePicture = catchAsyncError(async (req, res, next) => {
 
     await cloudinary.v2.uploader
       .upload(fileTempPath, {
-        folder: "social_media_api/avatars",
+        folder: "micro-url/avatars",
       })
       .then(async (result) => {
         user.avatar = {
