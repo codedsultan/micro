@@ -6,12 +6,14 @@ import cors from "cors";
 import cron from "node-cron";
 import errorMiddleware from "./middlewares/errors.js";
 import utility from "./utils/utility.js";
+import Morgan from "./middlewares//Morgan.js";
 
 
 export const runApp = () => {
     const app = express();
   
     // Middlewares
+    Morgan.mount(app);
     app.use(
       cors({
         origin: "*",
@@ -50,7 +52,7 @@ export const runApp = () => {
     app.use("*", (req, res, next) => {
       res.status(404).json({
         success: false,
-        message: "api endpoint not found",
+        message: "api endpoint not founded",
       });
     });
   };

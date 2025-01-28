@@ -13,7 +13,7 @@ const shortenUrl = catchAsyncError(async (req, res, next) => {
   const shortUrl = Math.random().toString(36).substring(2, 8);
 
   // If customShortUrl is provided, use it
-  const finalShortUrl =  shortUrl;
+  const finalShortUrl =  customShortUrl || shortUrl;
 
   // Save the URL in MongoDB
   const newUrl =  {
