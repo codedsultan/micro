@@ -50,14 +50,6 @@ const updateProfile = catchAsyncError(async (req, res, next) => {
     user.about = req.body.about;
   }
 
-  if (req.body.profession) {
-    user.profession = req.body.profession;
-  }
-
-  if (req.body.accountPrivacy) {
-    user.accountPrivacy = req.body.accountPrivacy;
-  }
-
   if (req.body.fbid) {
     user.fbid = req.body.fbid;
   }
