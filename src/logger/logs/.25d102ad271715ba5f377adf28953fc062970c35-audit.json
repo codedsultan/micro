@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/Users/user/nodejs/url-shortener/src/logger/logs/.25d102ad271715ba5f377adf28953fc062970c35-audit.json",
+    "files": [
+        {
+            "date": 1738165178009,
+            "name": "/Users/user/nodejs/url-shortener/src/logger/logs/error-2025-01-29.log",
+            "hash": "792ab0da9446f34f68decd269fdb2ad997914b7a74c15f67ed2ad3e9e5ad98bf"
+        }
+    ],
+    "hashType": "sha256"
+}

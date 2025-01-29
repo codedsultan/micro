@@ -3,9 +3,10 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { runApp, closeApp } from "./app.js";
 import initModules from "./initModules.js";
+import logger from "./logger/index.js";
 
 const app = runApp();
-
+const Logger = logger.getInstance();
 // Starting Server
 (async () => {
   // Config
@@ -29,6 +30,7 @@ const app = runApp();
   // Connecting to DB
   const connectToDatabase = async function () {
 
+    Logger.info("App :: Connecting to MongoDB...");
     return mongoose.connect(
       process.env.MONGO_URI,
       {
@@ -36,10 +38,12 @@ const app = runApp();
         autoIndex: true,
         socketTimeoutMS: 45000,
         serverSelectionTimeoutMS: 60000,
+        useNewUrlParser: true,
       }
     )
       .then(() => {
-        console.log('[database]: connected successfully to MongoDB');
+        Logger.info("App :: Connected to MongoDB...");
+        // console.log('[database]: connected successfully to MongoDB');
     
         // Init Modules
         initModules(app);
@@ -49,40 +53,46 @@ const app = runApp();
     
         const server = app.listen(port, (err) => {
           if (err) {
-            console.log(`[server] could not start http server on port: ${port}`);
+            Logger.error(`[server] could not start http server on port: ${port}`);
+            // console.log(`[server] could not start http server on port: ${port}`);
             return;
           }
-          console.log(`[server] running on port: ${port}`);
+          Logger.info(`[server] running on port: ${port}`);
+          // console.log(`[server] running on port: ${port}`);
         });
     
         // Handling Uncaught Exception
         process.on("uncaughtException", (err) => {
-          console.log(`Error: ${err.message}`);
-          console.log(`[server] shutting down due to Uncaught Exception`);
-    
+          // console.log(`Error: ${err.message}`);
+          // console.log(`[server] shutting down due to Uncaught Exception`);
+          Logger.error(`Uncaught Exception: ${err.message}`, { stack: err.stack });
           server.close(() => {
             process.exit(1);
           });
         });
     
         // Unhandled Promise Rejection
-        process.on("unhandledRejection", (err) => {
-          console.log(`Error: ${err.message}`);
-          console.log(`[server] shutting down due to Unhandled Promise Rejection`);
-    
+        process.on("unhandledRejection", (reason, promise) => {
+          // console.log(`Error: ${err.message}`);
+          // Logger.error(`[server] shutting down due to Unhandled Promise Rejection`);
+          Logger.error(`Unhandled Rejection at: ${promise}`, { reason });
+
           server.close(() => {
             process.exit(1);
           });
         });
       })
       .catch((err) => {
-        console.log(`[database]: could not connect due to [${err.message}]`);
+        Logger.error(`[database]: could not connect due to [${err.message}]`);
+        // console.log(`[database]: could not connect due to [${err.message}]`);
         app.listen(port, (err) => {
           if (err) {
-            console.log(`[server] could not start http server on port: ${port}`);
+            Logger.error(`[server] could not start http server on port: ${port}`);
+            // console.log(`[server] could not start http server on port: ${port}`);
             return;
           }
-          console.log(`[server] running on port: ${port}`);
+          Logger.info(`[server] running on port: ${port}`);
+          // console.log(`[server] running on port: ${port}`);
         });
     
         app.use("*", (req, res, next) => {

@@ -2,6 +2,7 @@ import winston from "winston";
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import DailyRotateFile from "winston-daily-rotate-file";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -38,6 +39,8 @@ let _consoleFormat = winston.format.combine(
 if (process.env.NODE_ENV !== "development") {
   _consoleFormat = winston.format.combine(
     winston.format.timestamp({ format: "YYYY-MM-DD HH:mm:ss:ms" }),
+    // winston.format.json()
+
     winston.format.printf(({ timestamp, level, message }) => {
       return `[${timestamp}] ${level}: ${message}`;
     })
@@ -55,7 +58,22 @@ const transports = [
     format: _consoleFormat,
   }),
 
-  new winston.transports.File({ filename: path.join(logDirectory, 'combined.log') }),
+  new DailyRotateFile({
+    level: 'error', // Logs only errors
+    filename: path.join(logDirectory, 'error-%DATE%.log'),
+    datePattern: 'YYYY-MM-DD',
+    maxSize: '20m',
+    maxFiles: '14d'
+  }),
+  new DailyRotateFile({
+    level: 'info', // Logs info, warnings, and errors
+    filename: path.join(logDirectory, 'combined-%DATE%.log'),
+    datePattern: 'YYYY-MM-DD',
+    maxSize: '20m',
+    maxFiles: '14d'
+  })
+//   new winston.transports.File({ filename: path.join(logDirectory, 'error.log') , level: 'error' }), 
+//   new winston.transports.File({ filename: path.join(logDirectory, 'combined.log') }),
 
 ];
 
@@ -73,8 +91,8 @@ class Logger {
     if (!Logger.instance) {
       Logger.instance = winston.createLogger({
         level: "debug",
-        levels,
-        transports,
+        levels : levels,
+        transports : transports,
       });
     }
     return Logger.instance;
@@ -83,10 +101,10 @@ class Logger {
   static _init() {
     Logger.instance = winston.createLogger({
       level: "debug",
-      levels,
-      transports,
+      levels: levels,
+      transports: transports,
     });
   }
 }
 
-export default Logger;
+export {Logger as default};

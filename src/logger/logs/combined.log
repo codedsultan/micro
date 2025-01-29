@@ -13,3 +13,150 @@
 {"level":"info","message":"App :: Registering Morgan middleware..."}
 {"level":"http","message":"::1 POST /api/v1/register 201 43 - 10830.812 ms"}
 {"level":"http","message":"::1 POST /api/v1/register 201 43 - 12649.614 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 GET /api/v1/login 404 54 - 16.265 ms"}
+{"level":"http","message":"::1 POST /api/v1/login 200 247 - 5751.003 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 65 - 14.012 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 48 - 431.583 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 310.499 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 277.219 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 48 - 335.391 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 596.175 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 329.267 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 313.245 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 358.834 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 267.376 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 309.777 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 48 - 301.573 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 297.472 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 65 - 0.936 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 498.670 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 531.030 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 294.626 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 316.928 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 47 - 15.216 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 47 - 4.209 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 47 - 2.384 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 47 - 15.830 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 47 - 4.065 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 47 - 2.706 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 47 - 2.922 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 47 - 2.245 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 47 - 2.192 ms"}
+{"level":"http","message":"::1 POST /api/v1/login 200 247 - 5358.414 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 47 - 2.024 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 47 - 2.447 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 47 - 2.888 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 47 - 2.149 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 1481.398 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 318.904 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 48 - 293.821 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 272.567 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 265.634 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 201 55 - 987.151 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 327.946 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 1283.202 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 326.641 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 270.736 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 312.151 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 309.524 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 280.150 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 301.113 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 48 - 161.343 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 48 - 137.303 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 201 64 - 171.776 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 310.857 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 267.952 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 53 - 328.828 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 48 - 414.891 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 69 - 15.075 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 69 - 1.380 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 69 - 11.183 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 69 - 1.330 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 69 - 0.655 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 69 - 1.008 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 69 - 0.964 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 69 - 0.990 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 69 - 0.689 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 69 - 0.713 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 69 - 1.229 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 69 - 1.067 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 69 - 0.807 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 69 - 0.777 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 69 - 0.866 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 69 - 0.868 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 69 - 0.738 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 69 - 0.653 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 49 - 955.173 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 54 - 1208.793 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 54 - 265.593 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 201 364 - 707.226 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 201 366 - 965.067 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 201 396 - 926.238 ms"}
+{"level":"http","message":"::1 GET /2pywlc 404 54 - 1.090 ms"}
+{"level":"http","message":"::1 GET /favicon.ico 404 54 - 0.671 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 201 388 - 962.177 ms"}
+{"level":"http","message":"::1 GET /gus12c 404 43 - 187.155 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 54 - 339.654 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 201 413 - 770.756 ms"}
+{"level":"http","message":"::1 GET /wokkou 302 47 - 207.167 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 54 - 324.794 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 54 - 333.913 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 54 - 381.843 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 54 - 761.522 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 201 414 - 755.893 ms"}
+{"level":"http","message":"::1 GET /xy78v4 302 48 - 171.213 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 54 - 1573.364 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 54 - 355.911 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 54 - 344.242 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 400 54 - 331.202 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 500 56 - 373.738 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"http","message":"::1 POST /api/v1/shorten 201 414 - 1413.898 ms"}
+{"level":"http","message":"::1 POST /api/v1/shorten 201 414 - 1019.365 ms"}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"info","message":"App :: Registering Morgan middleware..."}
+{"level":"info","message":"App :: Registering Morgan middleware..."}

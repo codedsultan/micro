@@ -1,9 +1,12 @@
 import ErrorHandler from "../helpers/errorHandler.js";
+import logger from "../logger/index.js";
 
 const errorMiddleware = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.message = err.message || "intenal server error";
-
+  
+  const Logger = logger.getInstance();
+  Logger.error(`Error: ${err.message}`, { stack: err.stack });
   // Wrong MongoDB Id error
   if (err.name === "CastError") {
     const message = `Resource not found - (invalid: ${err.path})`;
@@ -12,7 +15,7 @@ const errorMiddleware = (err, req, res, next) => {
 
   // Mongoose duplicate key error
   if (err.code === 11000) {
-    const message = `email is already in use`;
+    const message = `entity is already in use`;
     err = new ErrorHandler(message, 400);
   }
 
@@ -28,6 +31,7 @@ const errorMiddleware = (err, req, res, next) => {
     err = new ErrorHandler(message, 400);
   }
 
+  
   res.status(err.statusCode).json({
     success: false,
     message: err.message,
