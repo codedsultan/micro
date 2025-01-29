@@ -5,38 +5,36 @@ import mongoose from 'mongoose';
 const urlSchema = new mongoose.Schema({
   longUrl: {
     type: String,
-    required: true, // Ensures the original URL is provided
-    unique: true,   // Prevents duplication of the original URL
+    required: true, // Set to false to remove 'required' validation
+    unique: false,
   },
   shortUrl: {
     type: String,
-    required: true, // Shortened URL generated automatically
-    unique: true,   // Ensures the shortened URL is unique
+    required: true,
+    unique: true,
   },
   customShortUrl: {
     type: String,
-    unique: true,   // Ensures custom short URL is unique
-    sparse: true,   // Allows for the field to be empty if not used
+    unique: true,
+    sparse: true,
   },
   createdAt: {
     type: Date,
-    default: Date.now, // Automatically sets the creation date
+    default: Date.now,
   },
   expirationDate: {
     type: Date,
-    default: null, // Optional field for expiration
+    default: null,
   },
   clicks: {
     type: Number,
-    default: 0, // Tracks the number of times the shortened URL is clicked
+    default: 0,
   },
-
   owner: {
     type: mongoose.Schema.ObjectId,
-    ref: "User",
+    ref: 'User',
   },
 });
-
 
 // Create the model using the schema
 const Url = mongoose.model('Url', urlSchema);

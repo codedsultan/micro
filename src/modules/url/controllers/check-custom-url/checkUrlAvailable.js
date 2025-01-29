@@ -5,7 +5,7 @@ import utility from "../../../../utils/utility.js";
 
 /// CHECK URL AVAILABLE ///
 
-const checkUsernameAvailable = catchAsyncError(async (req, res, next) => {
+const checkUrlAvailable = catchAsyncError(async (req, res, next) => {
   const { shortUrl } = req.body;
 
   if (!shortUrl) {
